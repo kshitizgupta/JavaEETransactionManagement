@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence"
+			 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			 xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+
+	<persistence-unit name="pu" transaction-type="JTA">
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+		<jta-data-source>java:/samplePostgres</jta-data-source>
+		<class>com.kshitiz.api.User</class>
+		<exclude-unlisted-classes>false</exclude-unlisted-classes>
+		<shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
+		<properties>
+			<property name="eclipselink.jdbc.batch-writing" value="jdbc"/>
+			<property name="eclipselink.jdbc.batch-writing.size" value="2000"/>
+			<property name="eclipselink.weaving" value="static"/>
+			<!-- Set to FINE to log JPA queries -->
+			<property name="eclipselink.logging.logger" value="DefaultLogger"/>
+			<property name="eclipselink.logging.level" value="FINEST"/>
+			<property name="eclipselink.logging.level.sql" value="FINEST"/>
+			<property name="eclipselink.logging.parameters" value="true"/>
+			<property name="eclipselink.target-database" value="PostgreSQL"/>
+			<!-- Fix for GlassFish 3.1.2 https://bugs.eclipse.org/bugs/show_bug.cgi?id=294267 -->
+			<property name="eclipselink.jdbc.uppercase-columns" value="true"/>
+			<property name="eclipselink.target-server" value="JBoss"/>
+		</properties>
+	</persistence-unit>
+
+
+</persistence>
